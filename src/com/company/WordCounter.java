@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class WordCounter {
 
     private String scannedWord;
-    private String longestWordWord = " ";
+    private String longestWordWord = "";
     private int longestWordAmount;
     private int totalAmountOfLetters;
     private int totalAmountOfWords;
@@ -26,8 +26,8 @@ public class WordCounter {
     public void printAll() {
         System.out.println("The longest word is: " + longestWordAmount + " letters long!");
         System.out.println("The longest word is: " + longestWordWord);
-        System.out.println("Total amount of written words: " + totalAmountOfWords);
-        System.out.println("Total amount of written characters: " + totalAmountOfLetters);
+        System.out.println("Total amount of written words before stop: " + totalAmountOfWords);
+        System.out.println("Total amount of written characters excluding stop: " + totalAmountOfLetters);
         System.out.println("Total amount of rows written excluding stop : " + totalAmountOfRows);
     }
 
@@ -36,7 +36,7 @@ public class WordCounter {
 
         for (int i = 0; i < scannedWordsArray.length; i++) {
 
-            if (scannedWordsArray[i].length() > longestWordAmount && !scannedWord.contains("stop")) {
+            if (scannedWordsArray[i].length() > longestWordAmount) {
                 longestWordAmount = scannedWordsArray[i].length();
             }
 
@@ -49,7 +49,7 @@ public class WordCounter {
 
         for (int i = 0; i < scannedWordsArray.length; i++) {
 
-            if (scannedWordsArray[i].length() > longestWordWord.length() && !scannedWord.contains("stop")) {
+            if (scannedWordsArray[i].length() > longestWordWord.length()) {
                 longestWordWord = scannedWordsArray[i];
             }
         }
@@ -63,6 +63,10 @@ public class WordCounter {
         for (int i = 0; i < scannedWordsArray.length; i++) {
 
             totalAmountOfWords++;
+            if(scannedWordsArray[i].contains("stop")){
+                totalAmountOfWords--;
+                i = scannedWordsArray.length;
+            }
         }
         return totalAmountOfWords;
     }
@@ -91,8 +95,15 @@ public class WordCounter {
         return loopStopper;
     }
 
-    public void removeStopText() {
-        totalAmountOfWords = totalAmountOfWords - 1;
-        totalAmountOfLetters = totalAmountOfLetters - 4;
+    public String removeStopText() {
+
+        if (scannedWord.contains("stop")) {
+            String tempString = scannedWord.replace("stop", "");
+            scannedWord = tempString;
+
+        }
+        return scannedWord;
+
+
     }
 }

@@ -110,19 +110,18 @@ public class WordCounterTest {
         assertEquals(expected1, actual1);
 
     }
-
     @Test
-    public void testRemoveStopFromCounts() {
+    public void testRemoveStopFromString() {
         //Arrange
         String word = "fyra är sex vitkålspudding stop";
         WordCounter myWordCounter = new WordCounter(word);
 
         //Act
         myWordCounter.removeStopText();
-        int actual1 = myWordCounter.setAmountOfRows();
+        String actual1 = myWordCounter.removeStopText();
 
         //Assert
-        int expected1 = 0;
+        String expected1 = "fyra är sex vitkålspudding ";
 
         assertEquals(expected1, actual1);
 

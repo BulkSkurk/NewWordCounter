@@ -11,15 +11,15 @@ public class WordCounterMain {
 
         while (myWordCounter.setStopped() == false) {
             myWordCounter.scanWord();
+            myWordCounter.setStopped();
+            myWordCounter.setAmountOfRows();
+            myWordCounter.setAmountOfWords();
+            myWordCounter.removeStopText();
             myWordCounter.setLongestWord();
             myWordCounter.setLongestWordWord();
-            myWordCounter.setAmountOfWords();
             myWordCounter.setAmountOfCharacters();
-            myWordCounter.setAmountOfRows();
-            myWordCounter.setStopped();
 
             if (myWordCounter.setStopped() == true) {
-                myWordCounter.removeStopText();
                 myWordCounter.printAll();
             }
         }
